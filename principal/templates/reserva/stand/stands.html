@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block center %}
+<h2>Listar stands</h2>
+
+<a href="{% url 'stand_criar' %}" class="btn btn-success mb-3">Novo stand</a>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>localizacao</th>
+      <th>valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--abre o for -->
+    {% for object in object_list %}
+    <tr>
+      <td>{{ object.localizacao }}</td>
+      <td>{{ object.valor }}</td>
+      <!--forma diferente de chamar as urls-->
+      <td>
+        <a href="{% url 'stand_editar' object.pk %}" class="btn btn-primary btn-sm">Editar</a>
+        <a href="{% url 'stand_remover' object.pk %}" class="btn btn-danger btn-sm">Remover</a>
+      </td>
+    </tr>
+    <!--fecha o for-->
+
+    {% empty %}
+    <tr>
+      <td colspan="4">
+        <p>Não existem stands cadastrados.</p>
+      </td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% endblock %}

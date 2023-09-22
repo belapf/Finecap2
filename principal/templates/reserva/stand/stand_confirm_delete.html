@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block center %}
+<h1>Excluir o stand</h1>
+    <form method="post">
+        <section class="form container-fluid p-5x ">
+            {% csrf_token %}
+            <p> Você tem certeza que quer deletar o stand "{{ object }}"?</p>
+                {{ form }}
+        </section>
+        <button type="submit">
+            Confirmar
+        </button>
+    </form>
+{% endblock %}
