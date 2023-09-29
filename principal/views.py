@@ -17,6 +17,7 @@ class IndexView(generic.TemplateView):
 
 class ReservasListView(generic.ListView):
   model = Reserva
+  paginate_by=2 
   template_name = "reserva/reserva.html"
 
 class ReservaCreateView(views.SuccessMessageMixin, generic.CreateView):
@@ -25,6 +26,10 @@ class ReservaCreateView(views.SuccessMessageMixin, generic.CreateView):
   template_name = "reserva/form.html"
   success_url = reverse_lazy("reserva_listar")
   success_message = "Reserva cadastrada com sucesso!"
+  def form_invalid(self, form):
+    print ("!!!!", form.errors)
+    return self.render_to_response(self.get_context_data(form=form))
+  
   
 class ReservaDeleteView(views.SuccessMessageMixin, generic.DeleteView):
   model = Reserva
@@ -39,10 +44,16 @@ class ReservaUpdateView(views.SuccessMessageMixin, generic.UpdateView):
   success_url = reverse_lazy("reserva_listar")
   success_message = "Reserva atualizada com sucesso!"
 
+class ReservasListView(generic.ListView): 
+  model = Reserva 
+  paginate_by=2 
+  template_name = "reserva/reserva.html"
+
 
 #parte dos stands
 class StandListView(generic.ListView):
   model = Stand
+  paginate_by=2 
   template_name = "reserva/stand/stands.html"
 
 class StandCreateView(views.SuccessMessageMixin, generic.CreateView):
@@ -51,6 +62,10 @@ class StandCreateView(views.SuccessMessageMixin, generic.CreateView):
   template_name = "reserva/stand/form.html"
   success_url = reverse_lazy("stand_listar")
   success_message = "Stand cadastrado com sucesso!"
+  def form_invalid(self, form):
+    print ("!!!!", form.errors)
+    return self.render_to_response(self.get_context_data(form=form))
+  
   
 class StandDeleteView(views.SuccessMessageMixin, generic.DeleteView):
   model = Stand
@@ -63,3 +78,9 @@ class StandUpdateView(views.SuccessMessageMixin, generic.UpdateView):
   template_name = "reserva/stand/form.html"
   success_url = reverse_lazy("stand_listar")
   success_message = "Stand atualizado com sucesso!"
+
+
+class ReservasListView(generic.ListView): 
+     model = Reserva 
+     paginate_by=2 
+     template_name = "reserva/reserva.html"
