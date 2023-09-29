@@ -72,6 +72,8 @@ class StandDeleteView(views.SuccessMessageMixin, generic.DeleteView):
   success_url = reverse_lazy("stand_listar")
   success_message = "Stand removido com sucesso!"
   
+
+  
 class StandUpdateView(views.SuccessMessageMixin, generic.UpdateView):
   model = Stand
   form_class = StandForm
